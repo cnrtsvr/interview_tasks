@@ -1,2 +1,2 @@
-# interview_tasks
-Interview tasks I was asked to do.
+# Interview Tasks
+Interview Projects I was asked to do
