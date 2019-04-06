@@ -4,8 +4,12 @@ A Vue app that has a DataTable and a Chart component without any 3rd party libra
 * Filtering
 * Sorting
 
+Added a copy of data.json to project's public/data folder. 
+
 Usage: 
 
-As the data server is down now, serving this project is useless.
-
 This project is created with vue-cli 3.
+
+- Run 'npm install' in root directory.
+- Run 'npm run serve' and the project will be on 'localhost:8080'.
+- It can take a while on 'Downloading and Analyzing Data' screen as the json is ~35Mb.

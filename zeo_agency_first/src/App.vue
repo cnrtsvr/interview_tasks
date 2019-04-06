@@ -64,43 +64,46 @@ export default {
   },
   methods: {
     httpGetData: function() {
+      /*
       let username = 'interview_1';
       let password = 'int_candidate12';
       this.$http.get('https://cors-anywhere.herokuapp.com/http://35.243.142.103:5000/get_data', {
         headers: {
           'Authorization': 'Basic ' +  btoa(username + ":" + password)
         }
-      }).then((response) => {
+      })
+      */
+      // Getting the copy of data from localhost as the server is down now.
+      this.$http.get('/data/data.json').then((response) => {
         let dateToNumber = (d) => {
           d = d.split("-"); return Number(d[0]+d[1]+d[2]);
         };
-        const data = response.body;
-        for(let index in data){
-          const date = data[index].date;
+        for(let index in response.body){
+          const date = response.body[index].date;
           if(this.dateArray.find(x => x.date === date)) {
             let obj = this.dateArray.find(x => x.date === date);
-            obj.clicks += data[index].clicks;
-            obj.impressions += data[index].impressions;
+            obj.clicks += response.body[index].clicks;
+            obj.impressions += response.body[index].impressions;
           } else {
             const obj = {
               date: date,
-              clicks: data[index].clicks,
-              impressions: data[index].impressions
+              clicks: response.body[index].clicks,
+              impressions: response.body[index].impressions
             };
             this.dateArray.push(obj);
           }
-          this.totalClicks += data[index].clicks;
-          this.totalImpressions += data[index].impressions;
-          let keyword = data[index].keyword;
+          this.totalClicks += response.body[index].clicks;
+          this.totalImpressions += response.body[index].impressions;
+          let keyword = response.body[index].keyword;
           if(this.gridData.find(x => x.keyword === keyword)) {
             let obj = this.gridData.find(x => x.keyword === keyword);
-            obj.clicks += data[index].clicks;
-            obj.impressions += data[index].impressions;
+            obj.clicks += response.body[index].clicks;
+            obj.impressions += response.body[index].impressions;
           } else {
             const obj = {
               keyword: keyword,
-              clicks: data[index].clicks,
-              impressions: data[index].impressions
+              clicks: response.body[index].clicks,
+              impressions: response.body[index].impressions
             };
             this.gridData.push(obj);
           }
