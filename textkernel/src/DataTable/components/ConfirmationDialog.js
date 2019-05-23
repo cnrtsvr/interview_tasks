@@ -8,7 +8,7 @@ import {
     IconButton,
     Button
 } from '@material-ui/core';
-import CloseIcon from "./MapsDialog";
+import CloseIcon from "@material-ui/icons/Close";
 import withStyles from "@material-ui/core/es/styles/withStyles";
 import * as PropTypes from 'prop-types'; // * as because of default export being undefined.
 

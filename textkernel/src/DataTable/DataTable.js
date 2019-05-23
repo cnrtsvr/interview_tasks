@@ -9,6 +9,27 @@ import MapsDialog from './components/MapsDialog';
 import ConfirmationDialog from './components/ConfirmationDialog';
 
 class DataTable extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: [],
+            cols: [],
+            sort: 'asc',
+            sortBy: 'job_title',
+            rowsPerPage: 10,
+            page: 0,
+            showLoader: false,
+            filterBy: '',
+            mapsDialogOpen: false,
+            mapsDialogLocation: {
+                lat: 0,
+                lng: 0
+            },
+            confirmationDialogOpen: false,
+            selectedRowIndexToDelete: -1
+        };
+    }
+
     render () {
         return (
             <div>
@@ -30,7 +51,6 @@ class DataTable extends React.Component {
                                     return <DataTableRow key={index}
                                                          colNames={this.state.cols}
                                                         row={row}
-                                                        rowIndex={index}
                                                         handleDeleteRow={this.handleDeleteRow}
                                                         handleMapsClick={this.handleMapsClick}>
 
@@ -54,30 +74,12 @@ class DataTable extends React.Component {
                                      onChangeRowsPerPage={this.handleChangeRowsPerPage}/>
                 </Paper>
                 <MapsDialog open={this.state.mapsDialogOpen} location={this.state.mapsDialogLocation}
-                onClose={this.handleMapsModalClose}/>
+                            onClose={this.handleMapsModalClose}/>
                 <ConfirmationDialog open={this.state.confirmationDialogOpen} onClose={this.handleConfirmModalClose}
                                     onApprove={this.handleConfirmModalApprove}/>
             </div>
         )
     }
-
-    state = {
-        data: [],
-        cols: [],
-        sort: 'asc',
-        sortBy: 'job_title',
-        rowsPerPage: 10,
-        page: 0,
-        showLoader: false,
-        filterBy: '',
-        mapsDialogOpen: false,
-        mapsDialogLocation: {
-            lat: 0,
-            lng: 0
-        },
-        confirmationDialogOpen: false,
-        selectedRowIndexToDelete: -1
-    };
 
     handleRequestSort = (event, property) => {
         const sortBy = property;
@@ -119,7 +121,7 @@ class DataTable extends React.Component {
     handleConfirmModalApprove = event => {
         if(this.state.selectedRowIndexToDelete > -1) {
             const newData = [...this.getCurrentPageData(false)];
-            const deleteIndex = (this.state.page * this.state.rowsPerPage) + this.state.selectedRowIndexToDelete;
+            const deleteIndex = newData.findIndex(row => row.id === this.state.selectedRowIndexToDelete);
             newData.splice(deleteIndex, 1);
             this.setState({
                 data: newData,
@@ -200,7 +202,12 @@ class DataTable extends React.Component {
                 data: [],
                 cols: []
             };
-            stateObj.data = response.data;
+            stateObj.data = response.data.map((item, index) => {
+                return {
+                    ...item,
+                    id: index,
+                };
+            });
             stateObj.cols = [
                 {
                     header: "Job Title",
