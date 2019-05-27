@@ -1,0 +1,3 @@
+[submodule "task_comodo_nurd"]
+	path = task_comodo_nurd
+	url = https://github.com/cnrtsvr/task_comodo_nurd.git
