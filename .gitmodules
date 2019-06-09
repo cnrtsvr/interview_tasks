@@ -1,12 +1,16 @@
 [submodule "task_comodo_nurd"]
 	path = task_comodo_nurd
 	url = https://github.com/cnrtsvr/task_comodo_nurd.git
+	branch = master
 [submodule "task_textkernel"]
 	path = task_textkernel
 	url = https://github.com/cnrtsvr/task_textkernel.git
+	branch = master
 [submodule "task_zeo_agency_first"]
 	path = task_zeo_agency_first
 	url = https://github.com/cnrtsvr/task_zeo_agency_first.git
+	branch = master
 [submodule "task_zeo_agency_second"]
 	path = task_zeo_agency_second
 	url = https://github.com/cnrtsvr/task_zeo_agency_second.git
+	branch = master
