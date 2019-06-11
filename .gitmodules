@@ -14,7 +14,3 @@
 	path = task_zeo_agency_second
 	url = https://github.com/cnrtsvr/task_zeo_agency_second.git
 	branch = master
-[submodule "task_payever"]
-    path = task_payever
-    url = https://github.com/cnrtsvr/task_payever.git
-    branch = master
