@@ -18,3 +18,7 @@
 	path = task_payever
 	url = https://github.com/cnrtsvr/task_payever.git
 	branch = master
+[submodule "task_alyo"]
+	path = task_alyo
+	url = https://github.com/cnrtsvr/task_alyo.git
+	branch = master
