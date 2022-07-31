@@ -22,3 +22,7 @@
 	path = task_alyo
 	url = https://github.com/cnrtsvr/task_alyo.git
 	branch = master
+[submodule "task_loginvsi"]
+	path = task_loginvsi
+	url = https://github.com/cnrtsvr/task_loginvsi.git
+	branch = master
